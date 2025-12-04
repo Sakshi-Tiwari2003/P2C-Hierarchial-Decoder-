@@ -1,0 +1,6 @@
+# ninja log v5
+0	5496	1729231736994189799	/home/tejas/Downloads/Partial2Complete-main/extensions/pointops/build/temp.linux-x86_64-cpython-38/src/knnquery/knnquery_cuda.o	8149b88e92c92366
+1	5619	1729231737119192367	/home/tejas/Downloads/Partial2Complete-main/extensions/pointops/build/temp.linux-x86_64-cpython-38/src/sampling/sampling_cuda.o	cc9342c24b8e04d0
+1	11755	1729231743257318379	/home/tejas/Downloads/Partial2Complete-main/extensions/pointops/build/temp.linux-x86_64-cpython-38/src/knnquery/knnquery_cuda_kernel.o	ef3627f02cfc48ec
+1	11849	1729231743343320144	/home/tejas/Downloads/Partial2Complete-main/extensions/pointops/build/temp.linux-x86_64-cpython-38/src/pointops_api.o	9d2c2fc0b233f6de
+2	11882	1729231743385321006	/home/tejas/Downloads/Partial2Complete-main/extensions/pointops/build/temp.linux-x86_64-cpython-38/src/sampling/sampling_cuda_kernel.o	fbe24fa25d1c403e
