@@ -11,7 +11,7 @@ from timm.models.layers import trunc_normal_
 from utils import misc
 from utils.logger import *
 
-
+# change to pointnet++ set abstraction
 # --- PointNet++ Set Abstraction ---
 class PointNetSetAbstraction(nn.Module):
     """
