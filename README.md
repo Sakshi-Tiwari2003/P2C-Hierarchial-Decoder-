@@ -115,3 +115,43 @@ If you find our work useful to your research, please consider citing:
 
 ## Acknowledgement
 This code borrowed heavily from [PoinTr](https://github.com/yuxumin/PoinTr). Thanks for their great work!
+
+for old, new in rename_map.items():
+      if old in df.columns:
+          df = df.withColumnRenamed(old, new)
+
+  # Clean string columns that should be numeric
+  string_to_numeric_cols = ["spend", "impressions", "clicks"]
+
+  for c in string_to_numeric_cols:
+      df = df.withColumn(
+          c,
+          F.regexp_replace(F.col(c), "[^0-9.\\-]", "")
+      )
+      df = df.withColumn(c, F.col(c).cast("double"))
+
+  # conversions and leads are already int, cast to double
+  for c in ["conversions", "leads"]:
+      df = df.withColumn(c, F.col(c).cast("double"))
+
+  # Check nulls after casting
+  print("=== NULLS AFTER CASTING ===")
+  total = df.count()
+  for c in ["spend", "impressions", "clicks", "conversions", "leads"]:
+      null_count = df.filter(F.col(c).isNull()).count()
+      print(f"  {c:20s} -> {null_count} nulls out of {total} ({100*null_count/total:.2f}%)")
+
+  # Check what channels exist
+  print("\n=== UNIQUE CHANNELS ===")
+  df.select("channel").distinct().orderBy("channel").show(50, truncate=False)
+
+  print("\n=== UNIQUE VENDORS ===")
+  df.select("vendor").distinct().orderBy("vendor").show(50, truncate=False)
+
+  # See how channel and vendor relate
+  print("\n=== CHANNEL x VENDOR COMBINATIONS ===")
+  df.groupBy("channel", "vendor").count().orderBy("channel", "vendor").show(100, truncate=False)
+
+  df.printSchema()
+  df.show(5)
+
